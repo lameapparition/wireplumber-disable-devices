@@ -2,7 +2,7 @@
 This configuration allows you to declutter your Linux audio setup by completely disabling unwanted sound cards (like HDMI audio or Motherboard chips) and forcing USB DACs to hide unused "Digital/IEC958" outputs.
 
 >[!NOTE]
->I tested this on Ubuntu 26.04 and libwireplumber 0.5.13\
+>I tested this on Ubuntu 26.04 and libwireplumber 0.5.13
 
 ## 📂 Configuration Path
 Create the directory if it doesn't exist and place the `.conf` file inside:
