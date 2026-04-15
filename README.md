@@ -28,7 +28,7 @@ wpctl inspect 52
 + PCI Devices (Internal/GPU): Use device.name (e.g., alsa_card.pci-0000_09_00.4). These are stable based on your motherboard slots.
 + USB Devices: Use device.product.name or device.nick. This ensures the rule follows the device even if you move it to a different USB port.
 
-## 🖊️ Modify your conf file to correctly select and apply wanted rules
+## 🖊️ Modify your conf file to correctly select devices and apply rules
 
 ## 🚀 Applying the Changes
 After saving the file, restart the audio services to see the changes:
