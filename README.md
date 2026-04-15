@@ -29,6 +29,48 @@ wpctl inspect 52
 + USB Devices: Use `device.product.name` or `device.nick`. This ensures the rule follows the device even if you move it to a different USB port.
 
 ## 🖊️ Modify your conf file to correctly select devices and apply rules
+```
+monitor.alsa.rules = [
+  {
+    # RULE 1: COMPLETELY DISABLE UNWANTED HARDWARE
+    # Use this for internal motherboard audio or GPU HDMI ports you don't use.
+    matches = [
+    # Match by exact device name (best for PCI devices)
+      {
+        device.name = "alsa_card.pci-0000_09_00.4"
+      },
+      {
+	    device.name = "alsa_card.pci-0000_07_00.1"
+      }
+    ]
+    actions = {
+      update-props = {
+         device.disabled = true
+      }
+    }
+  },
+  
+  {
+    # RULE 2: HIDE DIGITAL OUTPUTS (ANALOG-ONLY MODE)
+    # Use this for USB DACs/Speakers to remove the "Digital Stereo (IEC958)" clutter.
+    # The '~' allows wildcard matching to ensure it works across different USB ports if you want to use device.name 
+    matches = [
+      {
+        device.product.name = "FiiO K11 R2R"
+      },
+      {
+	    device.product.name = "Buildwin Media-Player"
+      }
+    ]
+    actions = {
+      update-props = {
+        # Forces WirePlumber to ignore digital profiles and only create Analog Sinks
+        "device.profile-set" = "analog-only.conf"
+      }
+    }
+  }
+]
+```
 
 ## 🚀 Applying the Changes
 After saving the file, restart the audio services to see the changes:
